@@ -3,14 +3,11 @@
 utils of [lz-string](https://github.com/pieroxy/lz-string)
 ## Install
 ```sh
-npm install lz-compress
-npm install lz-decompress
+npm install lz-utils
 ```
 
 ```js
-const compress = require('lz-compress');
-const decompress = require('lz-decompress');
-
+const {compress, decompress} = require('lz-utils');
 var s = 'this is my string english'
 const cs = compress(s);
 console.log(cs);

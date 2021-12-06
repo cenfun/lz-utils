@@ -1,16 +1,16 @@
 {
     "name": "lz-utils",
     "description": "lz-utils",
-    "version": "1.0.0",
-    "private": true,
+    "version": "1.0.1",
+    "main": "./lib/index.js",
     "keywords": [
         "lz-utils"
     ],
     "scripts": {
         "test": "node ./test/test.js"
     },
-    "workspaces": [
-        "packages/*"
+    "files": [
+        "lib"
     ],
     "dependencies": {},
     "devDependencies": {

@@ -1,9 +1,0 @@
-{
-    "name": "lz-decompress",
-    "version": "1.0.0",
-    "main": "lib/lz-decompress.js",
-    "files": [
-        "lib"
-    ],
-    "dependencies": {}
-}

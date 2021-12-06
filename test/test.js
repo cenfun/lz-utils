@@ -1,5 +1,5 @@
-const compress = require('../packages/lz-compress');
-const decompress = require('../packages/lz-decompress');
+const compress = require('../lib/compress');
+const decompress = require('../lib/decompress');
 
 const list = [
     'this is my string english',
