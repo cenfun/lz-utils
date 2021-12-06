@@ -1,11 +1,4 @@
-# lz-utils
-
-utils of [lz-string](https://github.com/pieroxy/lz-string)
-## Install
-```sh
-npm install lz-compress
-npm install lz-decompress
-```
+## lz-decompress
 
 ```js
 const compress = require('lz-compress');

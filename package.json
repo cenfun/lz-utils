@@ -1,0 +1,19 @@
+{
+    "name": "lz-utils",
+    "description": "lz-utils",
+    "version": "1.0.0",
+    "main": "",
+    "keywords": [
+        "lz-utils"
+    ],
+    "scripts": {
+        "test": "node ./test/test.js"
+    },
+    "workspaces": [
+        "packages/*"
+    ],
+    "dependencies": {},
+    "devDependencies": {
+        "eslint": "^8.3.0"
+    }
+}

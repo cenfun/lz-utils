@@ -1,0 +1,9 @@
+{
+    "name": "lz-compress",
+    "version": "1.0.0",
+    "main": "lib/lz-compress.js",
+    "files": [
+        "lib"
+    ],
+    "dependencies": {}
+}
