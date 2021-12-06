@@ -2,7 +2,7 @@
     "name": "lz-utils",
     "description": "lz-utils",
     "version": "1.0.0",
-    "main": "",
+    "private": true,
     "keywords": [
         "lz-utils"
     ],
