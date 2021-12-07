@@ -1,7 +1,7 @@
 {
     "name": "lz-utils",
     "description": "lz-utils",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "main": "./lib/index.js",
     "keywords": [
         "lz-utils"

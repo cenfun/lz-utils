@@ -1,6 +1,6 @@
 # lz-utils
 
-utils of [lz-string](https://github.com/pieroxy/lz-string) but compress/decompress separated for bundle self decompressed on runtime.
+utils of [lz-string](https://github.com/pieroxy/lz-string) but only base64 format and compress/decompress separated for bundle self decompressed on runtime.
 ```js
 const compress = require('lz-utils/lib/compress.js');
 const decompress = require('lz-utils/lib/decompress.js');
@@ -13,11 +13,9 @@ npm install lz-utils
 ```js
 const {compress, decompress} = require('lz-utils');
 const s = 'this is my string english'
-//base64 or utf16 (default)
-const base64 = true;
-const cs = compress(s, base64);
+const cs = compress(s);
 console.log(cs);
-const ds = decompress(cs, base64);
+const ds = decompress(cs);
 if (ds !== s) {
     throw new Error('compress/decompress error');
 }
