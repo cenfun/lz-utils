@@ -1,6 +1,10 @@
 # lz-utils
 
-utils of [lz-string](https://github.com/pieroxy/lz-string)
+utils of [lz-string](https://github.com/pieroxy/lz-string) but compress/decompress separated for bundle self decompressed on runtime.
+```js
+const compress = require('lz-utils/lib/compress.js');
+const decompress = require('lz-utils/lib/decompress.js');
+```
 ## Install
 ```sh
 npm install lz-utils
@@ -16,12 +20,6 @@ const ds = decompress(cs);
 if (ds !== s) {
     throw new Error('compress/decompress error');
 }
-```
-
-## Only import compress or decompress
-```js
-const compress = require('lz-utils/lib/compress.js');
-const decompress = require('lz-utils/lib/decompress.js');
 ```
 
 ## Link
