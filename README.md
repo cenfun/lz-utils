@@ -9,17 +9,20 @@ const decompress = require('lz-utils/lib/decompress.js');
 ```sh
 npm install lz-utils
 ```
-
 ## Usage
 ```js
 const {compress, decompress} = require('lz-utils');
-var s = 'this is my string english'
-const cs = compress(s);
+const s = 'this is my string english'
+//format: base64 (default), or utf16
+const format = "base64";
+const cs = compress(s, format);
 console.log(cs);
-const ds = decompress(cs);
+const ds = decompress(cs, format);
 if (ds !== s) {
     throw new Error('compress/decompress error');
 }
+
+
 ```
 
 ## Link
