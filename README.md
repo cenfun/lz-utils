@@ -13,16 +13,14 @@ npm install lz-utils
 ```js
 const {compress, decompress} = require('lz-utils');
 const s = 'this is my string english'
-//format: base64 (default), or utf16
-const format = "base64";
-const cs = compress(s, format);
+//base64 or utf16 (default)
+const base64 = true;
+const cs = compress(s, base64);
 console.log(cs);
-const ds = decompress(cs, format);
+const ds = decompress(cs, base64);
 if (ds !== s) {
     throw new Error('compress/decompress error');
 }
-
-
 ```
 
 ## Link

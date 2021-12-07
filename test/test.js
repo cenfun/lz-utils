@@ -14,21 +14,22 @@ const list = [
     'АБВДшщыф'
 ];
 
-let format = 'base64';
+console.log('utf16 =================================================');
 for (const s of list) {
-    const cs = compress(s, format);
+    const cs = compress(s);
     console.log(cs);
-    const ds = decompress(cs, format);
+    const ds = decompress(cs);
     if (ds !== s) {
         throw new Error('compress/decompress error');
     }
 }
 
-format = 'utf16';
+console.log('base64 ================================================');
+const base64 = true;
 for (const s of list) {
-    const cs = compress(s, format);
+    const cs = compress(s, base64);
     console.log(cs);
-    const ds = decompress(cs, format);
+    const ds = decompress(cs, base64);
     if (ds !== s) {
         throw new Error('compress/decompress error');
     }
