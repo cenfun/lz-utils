@@ -22,3 +22,12 @@ for (const s of list) {
         throw new Error('compress/decompress error');
     }
 }
+
+for (const s of list) {
+    const cs = compress(s, 'utf16');
+    console.log(cs);
+    const ds = decompress(cs, 'utf16');
+    if (ds !== s) {
+        throw new Error('compress/decompress error');
+    }
+}
