@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lz-utils test</title>
+</head>
+
+<body>
+    <script src="../dist/lz-compress.js"></script>
+    <script src="../dist/lz-decompress.js"></script>
+    <script src="../dist/lz-utils.js"></script>
+    <script>
+
+        const list = [
+            'this is my string english',
+            '~!@#$%^&*()_+{}[]:;<>,.?/|\\',
+            'Chinese,这是中文测试',
+            '汉字繁體',
+            '12【标，点。】',
+            '☆√✔×✘❤♬',
+            '①⑵⒊Ⅳ❺ʊəts',
+            'あいアイサてつろ',
+            '㈀ㅏ㉡ㅎㅉㅃㅈㅂ',
+            'АБВДшщыф'
+        ];
+        const lz = window["lz-utils"];
+        console.log(lz)
+
+        const compress = window["lz-compress"];
+        const decompress = window["lz-decompress"];
+
+        for (const s of list) {
+            const cs = compress(s);
+            console.log(cs);
+            const ds = decompress(cs);
+            if (ds !== s) {
+                throw new Error('compress/decompress error');
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
