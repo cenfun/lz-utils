@@ -3,6 +3,11 @@
     "description": "lz-utils",
     "version": "1.0.5",
     "main": "./lib/index.js",
+    "browser": {
+        "lz-compress": "./dist/lz-compress.js",
+        "lz-decompress": "./dist/lz-decompress.js",
+        "lz-utils": "./dist/lz-utils.js"
+    },
     "keywords": [
         "lz-utils"
     ],
