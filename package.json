@@ -19,6 +19,8 @@
     "keywords": [
         "lz-utils"
     ],
+    "license": "MIT",
+    "dependencies": {},
     "devDependencies": {
         "babel-loader": "^9.1.2",
         "eslint": "^8.36.0",
