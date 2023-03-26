@@ -2,7 +2,7 @@ const StatsReportPlugin = require('webpack-stats-report').StatsReportPlugin;
 
 module.exports = {
     mode: 'production',
-    //mode: 'development',
+    // mode: 'development',
     entry: {
         'lz-compress': './lib/compress.js',
         'lz-decompress': './lib/decompress.js',

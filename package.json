@@ -1,16 +1,13 @@
 {
     "name": "lz-utils",
+    "version": "1.0.6",
     "description": "lz-utils",
-    "version": "1.0.5",
     "main": "./lib/index.js",
     "browser": {
         "lz-compress": "./dist/lz-compress.js",
         "lz-decompress": "./dist/lz-decompress.js",
         "lz-utils": "./dist/lz-utils.js"
     },
-    "keywords": [
-        "lz-utils"
-    ],
     "scripts": {
         "build": "npx webpack",
         "test": "node ./test/test.js"
@@ -19,11 +16,15 @@
         "lib",
         "dist"
     ],
+    "keywords": [
+        "lz-utils"
+    ],
     "devDependencies": {
-        "babel-loader": "^8.2.5",
-        "eslint": "^8.13.0",
-        "webpack": "^5.72.0",
-        "webpack-cli": "^4.9.2",
-        "webpack-stats-report": "^1.2.3"
+        "babel-loader": "^9.1.2",
+        "eslint": "^8.36.0",
+        "eslint-config-plus": "^1.0.6",
+        "webpack": "^5.76.3",
+        "webpack-cli": "^5.0.1",
+        "webpack-stats-report": "^2.0.3"
     }
 }
