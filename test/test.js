@@ -1,5 +1,4 @@
-const compress = require('../lib/compress');
-const decompress = require('../lib/decompress');
+const { compress, decompress } = require('../');
 
 const list = [
     'this is my string english',
