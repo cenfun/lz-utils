@@ -1,17 +1,15 @@
 # lz-utils
 
 utils of [lz-string](https://github.com/pieroxy/lz-string) but only base64 format and compress/decompress separated for bundle self decompressed on runtime.
-```js
-const compress = require('lz-utils/lib/compress.js');
-const decompress = require('lz-utils/lib/decompress.js');
-```
+
 ## Install
 ```sh
 npm install lz-utils
 ```
 ## Usage
 ```js
-const {compress, decompress} = require('lz-utils');
+//CJS
+const { compress, decompress } = require('lz-utils');
 const s = 'this is my string english'
 const cs = compress(s);
 console.log(cs);
@@ -21,6 +19,11 @@ if (ds !== s) {
 }
 ```
 see [test.js](test/test.js)
+
+```js
+//ESM
+import { compress, decompress } from 'lz-utils';
+```
 
 ## Browser Usage
 ```html
@@ -44,5 +47,8 @@ see [test.html](test/test.html)
 
 ## Changelog
 
+* 1.0.7 
+    - added ESM supported
+
 * 1.0.5
-    * added browser version
+    - added browser version
