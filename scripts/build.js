@@ -9,6 +9,7 @@ const buildItem = async (item, libDir, distDir, tempDir) => {
 
     const outfile = path.resolve(distDir, item.entry);
     const entry = path.resolve(libDir, item.entry);
+    delete item.entry;
 
     // https://esbuild.github.io/api/
     const result = await esbuild.build({
@@ -20,7 +21,8 @@ const buildItem = async (item, libDir, distDir, tempDir) => {
         format: 'cjs',
         legalComments: 'none',
         target: ['es2020'],
-        platform: 'node'
+        platform: 'node',
+        ... item
     });
 
     // save meta file
@@ -50,6 +52,16 @@ const build = async () => {
     if (!fs.existsSync(tempDir)) {
         fs.mkdirSync(tempDir);
     }
+
+    const workerItem = {
+        entry: 'inflate-worker.js',
+        platform: 'browser',
+        format: 'iife'
+    };
+    const workerFIle = await buildItem(workerItem, libDir, distDir, tempDir);
+    const workerB64 = fs.readFileSync(workerFIle).toString('base64');
+    const workerStr = `module.exports = '${workerB64}';`;
+    fs.writeFileSync(path.resolve(distDir, 'inflate-dataurl.js'), workerStr);
 
     const buildList = [{
         entry: 'compress.js'

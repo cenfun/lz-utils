@@ -33,14 +33,16 @@
             console.assert(item === testData.raw.list[i]);
         });
 
-        const inflateStr = module.inflate(testData.inflateStr);
-        const inflateData = JSON.parse(inflateStr);
-        console.log(inflateData);
+        module.inflate(testData.inflateStr).then((inflateStr) => {
+            // console.log(inflateStr);
+            const inflateData = JSON.parse(inflateStr);
+            console.log(inflateData);
 
-        inflateData.list.forEach((item, i) => {
-            console.assert(item === testData.raw.list[i]);
+            inflateData.list.forEach((item, i) => {
+                console.assert(item === testData.raw.list[i]);
+            });
         });
-
+        
     </script>
 </body>
 
