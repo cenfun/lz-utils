@@ -13,7 +13,8 @@
         "./decompress": "./dist/decompress.js",
         "./deflate": "./dist/deflate.js",
         "./inflate": "./dist/inflate.js",
-        "./lib/*": "./dist/*",
+        "./dist/*": "./dist/*",
+        "./lib/*": "./lib/*",
         "./package.json": "./package.json"
     },
     "scripts": {
