@@ -8,38 +8,38 @@
 </head>
 
 <body>
-    <script src="../dist/lz-compress.js"></script>
-    <script src="../dist/lz-decompress.js"></script>
-    <script src="../dist/lz-utils.js"></script>
+    <script src="./test.data.js"></script>
     <script>
+        window.module = {};
+    </script>
+    <script src="../dist/decompress.js"></script>
+    <script>
+        module.decompress = module.exports;
+    </script>
+    <script src="../dist/inflate.js"></script>
+    <script>
+        module.inflate = module.exports;
+        console.log(module);
+    </script>
+    <script>
+        const testData = window.testData;
+        console.log(testData.raw);
 
-        const list = [
-            'this is my string english',
-            '~!@#$%^&*()_+{}[]:;<>,.?/|\\',
-            'Chinese,这是中文测试',
-            '汉字繁體',
-            '12【标，点。】',
-            '☆√✔×✘❤♬',
-            '①⑵⒊Ⅳ❺ʊəts',
-            'あいアイサてつろ',
-            '㈀ㅏ㉡ㅎㅉㅃㅈㅂ',
-            'АБВДшщыф'
-        ];
-        const lz = window["lz-utils"];
-        console.log(lz)
+        const decompressStr = module.decompress(testData.decompressStr);
+        const decompressData = JSON.parse(decompressStr);
+        console.log(decompressData);
 
-        const compress = window["lz-compress"];
-        const decompress = window["lz-decompress"];
+        decompressData.list.forEach((item, i) => {
+            console.assert(item === testData.raw.list[i]);
+        });
 
-        for (const s of list) {
-            const cs = compress(s);
-            console.log(cs);
-            const ds = decompress(cs);
-            if (ds !== s) {
-                throw new Error('compress/decompress error');
-            }
-        }
+        const inflateStr = module.inflate(testData.inflateStr);
+        const inflateData = JSON.parse(inflateStr);
+        console.log(inflateData);
 
+        inflateData.list.forEach((item, i) => {
+            console.assert(item === testData.raw.list[i]);
+        });
 
     </script>
 </body>

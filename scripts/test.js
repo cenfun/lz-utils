@@ -1,19 +1,12 @@
-const { compress, decompress } = require('../');
+const fs = require('fs');
+const path = require('path');
+const {
+    compress, decompress, deflate
+} = require('../');
 
-const list = [
-    'this is my string english',
-    '~!@#$%^&*()_+{}[]:;<>,.?/|\\',
-    'Chinese,这是中文测试',
-    '汉字繁體',
-    '12【标，点。】',
-    '☆√✔×✘❤♬',
-    '①⑵⒊Ⅳ❺ʊəts',
-    'あいアイサてつろ',
-    '㈀ㅏ㉡ㅎㅉㅃㅈㅂ',
-    'АБВДшщыф'
-];
+const json = require('../test/test.json');
 
-for (const s of list) {
+for (const s of json.list) {
     const cs = compress(s);
     console.log(cs);
     const ds = decompress(cs);
@@ -21,3 +14,17 @@ for (const s of list) {
         throw new Error('compress/decompress error');
     }
 }
+
+// for browser
+const jsonStr = JSON.stringify(json);
+
+const dStr = compress(jsonStr);
+const iStr = deflate(jsonStr);
+
+const testData = `window.testData = {
+    raw: ${jsonStr},
+    decompressStr: "${dStr}",
+    inflateStr: "${iStr}"
+};`;
+fs.writeFileSync(path.resolve(__dirname, '../test/test.data.js'), testData);
+

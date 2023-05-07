@@ -1,0 +1,5 @@
+window.testData = {
+    raw: {"list":["this is my string english","~!@#$%^&*()_+{}[]:;<>,.?/|\\","Chinese,这是中文测试","汉字繁體","12【标，点。】","☆√✔×✘❤♬","①⑵⒊Ⅳ❺ʊəts","あいアイサてつろ","㈀ㅏ㉡ㅎㅉㅃㅈㅂ","АБВДшщыф"]},
+    decompressStr: "N4IgNglgzgLiBcBtEMAW0AEmC2BPDsAThAHYDmGApuZFKiADQgB+AhAAIDEAJAKQB6AMgBUACgCUAfQDUwAL6IAuvADcAHgB8DAHQB+APQAfADrHGIAMLoSlKJQaBN+MD0ZoFo5QOGmgaVtAq9HnAkjaB1bUBBP0AVrPMARgAmQAQGQHALQBh/wE6HQCAGQEQGc0AwMkAsIkAUcgB1wAxyQBNyQBsyc0ADEkBXEkAokkBjQkAvckAooEBNIBgoc0AhBkARBkAihkAShkBWhkAzBkATBkBYhnNAACZAeUZAQyZAOUZASUZAYUZACUZAIUZzQAQQQEQQQCQQQBQQQAkQQEkQQGkQQBEQEEU5IA",
+    inflateStr: "256,q1bKySwuUbKKVirJyCxWAKLcSoXikqLMvHSF1Lx0oGSGko5SnaKDsopqnJqWhma8dnVtdKyVtY2djp69fk1MDFDaOSMzL7U4VefF/pnPZqx/smPts2ntz7Z2v1g/FSj5bGPn07XTn+9sfLl6CpBraPS4YcKzBe3v9/Q8b9r5uKHpccNEoPCjGW2POmY9mjPl8PRHc2Y8mrvk0cw1IOGJCx5N3PpoUtej1sWP5u461XVyZkkxUPxxY9PjxpbHTYseNy153LT1ceOyx41ARi9IqqPhcWv/486Fj1v7Hrd2Pm5tftza8bi1CSh1YcKFiRcmXZhyseNi58Xuiy1KsbUA"
+};
