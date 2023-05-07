@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+// const zlib = require('zlib');
+
 const {
     compress, decompress, deflate
 } = require('../');
@@ -28,3 +30,18 @@ const testData = `window.testData = {
 };`;
 fs.writeFileSync(path.resolve(__dirname, '../test/test.data.js'), testData);
 
+
+// const tempStr = '1234567890';
+// const buf = Buffer.from(tempStr);
+
+// const dRaw = zlib.deflateRawSync(buf);
+// console.log(dRaw);
+
+// const d = zlib.deflateSync(buf);
+// console.log(d);
+
+// const dr = new Uint8Array(d.buffer, d.byteOffset + 2, d.length - 6);
+// console.log(Buffer.from(dr));
+
+// const gz = zlib.gzipSync(buf);
+// console.log(Buffer.from(gz));
