@@ -3,7 +3,7 @@ const path = require('path');
 // const zlib = require('zlib');
 
 const {
-    compress, decompress, deflate
+    compress, decompress, deflate, deflateSync
 } = require('../');
 
 
@@ -25,6 +25,9 @@ const test = async () => {
 
     const dStr = compress(jsonStr);
     const iStr = await deflate(jsonStr);
+
+    const iStrSync = deflateSync(jsonStr);
+    console.assert(iStrSync === iStr);
 
     const testData = `window.testData = { raw: ${jsonStr}, decompressStr: "${dStr}", inflateStr: "${iStr}" };`;
 

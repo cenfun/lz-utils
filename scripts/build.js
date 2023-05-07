@@ -70,7 +70,11 @@ const build = async () => {
     }, {
         entry: 'deflate.js'
     }, {
+        entry: 'deflate-sync.js'
+    }, {
         entry: 'inflate.js'
+    }, {
+        entry: 'inflate-sync.js'
     }];
 
     for (const item of buildList) {

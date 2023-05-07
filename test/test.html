@@ -19,9 +19,14 @@
     <script src="../dist/inflate.js"></script>
     <script>
         module.inflate = module.exports;
-        console.log(module);
+    </script>
+    <script src="../dist/inflate-sync.js"></script>
+    <script>
+        module.inflateSync = module.exports;
     </script>
     <script>
+        console.log(module);
+
         const testData = window.testData;
         console.log(testData.raw);
 
@@ -33,7 +38,12 @@
             console.assert(item === testData.raw.list[i]);
         });
 
+        const inflateStrSync = module.inflateSync(testData.inflateStr);
+
         module.inflate(testData.inflateStr).then((inflateStr) => {
+
+            console.assert(inflateStrSync === inflateStr);
+
             // console.log(inflateStr);
             const inflateData = JSON.parse(inflateStr);
             console.log(inflateData);

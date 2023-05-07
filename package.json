@@ -12,7 +12,9 @@
         "./compress": "./dist/compress.js",
         "./decompress": "./dist/decompress.js",
         "./deflate": "./dist/deflate.js",
+        "./deflate-sync": "./dist/deflate-sync.js",
         "./inflate": "./dist/inflate.js",
+        "./inflate-sync": "./dist/inflate-sync.js",
         "./dist/*": "./dist/*",
         "./lib/*": "./lib/*",
         "./package.json": "./package.json"
