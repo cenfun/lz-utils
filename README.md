@@ -15,7 +15,7 @@
     - Browser only (Using `Uint8Array` and `TextDecoder`)
     - High performance (Using [tiny-inflate](https://github.com/foliojs/tiny-inflate))
     - Synchronous and Asynchronous/Multi-thread (Using Worker)
-    - Small size (minified) `3.16KB` / `4.68KB`
+    - Small size (minified) `3.16KB` / `3.62KB`
 
 ## Install
 ```sh

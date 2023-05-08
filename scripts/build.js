@@ -5,15 +5,18 @@ const EC = require('eight-colors');
 
 const buildItem = async (item, libDir, distDir, tempDir) => {
 
-    EC.log(`build ${item.entry} ...`);
-
-    const outfile = path.resolve(distDir, item.entry);
-    const entry = path.resolve(libDir, item.entry);
+    const entry = item.entry;
     delete item.entry;
+
+    EC.log(`build ${entry} ...`);
+
+    const outfile = path.resolve(distDir, entry);
+    const entryPath = path.resolve(libDir, entry);
+
 
     // https://esbuild.github.io/api/
     const result = await esbuild.build({
-        entryPoints: [entry],
+        entryPoints: [entryPath],
         outfile,
         minify: true,
         metafile: true,
@@ -27,7 +30,7 @@ const buildItem = async (item, libDir, distDir, tempDir) => {
 
     // save meta file
     const metafile = result.metafile;
-    const metaPath = path.resolve(tempDir, `${item.entry}.json`);
+    const metaPath = path.resolve(tempDir, `${entry}.json`);
     fs.writeFileSync(metaPath, JSON.stringify(metafile, null, 4));
 
     EC.logGreen(`built ${outfile}`);
@@ -36,6 +39,8 @@ const buildItem = async (item, libDir, distDir, tempDir) => {
 };
 
 const build = async () => {
+
+    const libDir = path.resolve(__dirname, '../lib');
 
     const distDir = path.resolve(__dirname, '../dist');
     if (fs.existsSync(distDir)) {
@@ -46,22 +51,28 @@ const build = async () => {
     }
     fs.mkdirSync(distDir);
 
-    const libDir = path.resolve(__dirname, '../lib');
-
     const tempDir = path.resolve(__dirname, '../.temp');
-    if (!fs.existsSync(tempDir)) {
-        fs.mkdirSync(tempDir);
+    if (fs.existsSync(tempDir)) {
+        fs.rmSync(tempDir, {
+            recursive: true,
+            force: true
+        });
     }
+    fs.mkdirSync(tempDir);
 
     const workerItem = {
         entry: 'inflate-worker.js',
         platform: 'browser',
-        format: 'iife'
+        format: 'iife',
+        minify: true
     };
     const workerFIle = await buildItem(workerItem, libDir, distDir, tempDir);
-    const workerB64 = fs.readFileSync(workerFIle).toString('base64');
-    const workerStr = `module.exports = '${workerB64}';`;
-    fs.writeFileSync(path.resolve(tempDir, 'inflate-worker-data.js'), workerStr);
+    const workerJs = fs.readFileSync(workerFIle);
+    const workerData = {
+        data: workerJs.toString('utf-8')
+    };
+    const workerStr = JSON.stringify(workerData);
+    fs.writeFileSync(path.resolve(tempDir, 'inflate-worker-data.json'), workerStr);
 
     const buildList = [{
         entry: 'compress.js'

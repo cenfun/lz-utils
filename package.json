@@ -1,8 +1,11 @@
 {
     "name": "lz-utils",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "lz-utils",
     "main": "./dist/index.js",
+    "browser": {
+        "lz-utils": "./dist/browser.js"
+    },
     "exports": {
         ".": {
             "import": "./dist/index.mjs",
@@ -31,6 +34,7 @@
         "lz-utils"
     ],
     "license": "MIT",
+    "dependencies": {},
     "devDependencies": {
         "babel-loader": "^9.1.2",
         "eight-colors": "^1.0.3",
