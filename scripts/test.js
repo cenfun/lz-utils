@@ -31,7 +31,7 @@ const test = async () => {
 
     const testData = `window.testData = { raw: ${jsonStr}, decompressStr: "${dStr}", inflateStr: "${iStr}" };`;
 
-    fs.writeFileSync(path.resolve(__dirname, '../test/test.data.js'), testData);
+    fs.writeFileSync(path.resolve(__dirname, '../.temp/test.data.js'), testData);
 
 
     // const tempStr = '1234567890';
