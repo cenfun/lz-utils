@@ -61,7 +61,7 @@ const build = async () => {
     const workerFIle = await buildItem(workerItem, libDir, distDir, tempDir);
     const workerB64 = fs.readFileSync(workerFIle).toString('base64');
     const workerStr = `module.exports = '${workerB64}';`;
-    fs.writeFileSync(path.resolve(distDir, 'inflate-dataurl.js'), workerStr);
+    fs.writeFileSync(path.resolve(tempDir, 'inflate-worker-data.js'), workerStr);
 
     const buildList = [{
         entry: 'compress.js'
