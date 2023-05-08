@@ -43,7 +43,7 @@ const ds = decompress(cs);
 
 ## Why inflate browser only?
 - The business here is to generate a lot of html reports to users or customers, so the report needs to be generated as fast as possible and the file size should be as small as possible. 
-- The possible process is to compress the data on the server side and generate the html file, then the user opens the html file in the browser, and finally decompresses the data and renders the report.
+- The possible process is to compress the report data on the server side and embed it in the html file. When the user opens the html file in the browser, the report data will be self-decompressed and rendered in the browser.
 
 
 ## String Compression Benchmark
