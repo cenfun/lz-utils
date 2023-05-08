@@ -6,12 +6,14 @@
     - Normal performance
     - Synchronous only
     - The smallest size (minified) `1.75KB` / `1.67KB`
-* `deflateSync` and `deflate` compress raw string and encode in base64
+* `deflateSync` and `deflate` 
+    - Compress raw string and encode in base64
     - Node.js only
     - The highest performance (Using native `zlib`)
     - Synchronous and Asynchronous
     - The smallest size (minified) `0.13KB` / `0.17KB`
-* `inflateSync` and `inflate` decompress base64 string to raw string
+* `inflateSync` and `inflate` 
+    - Decompress base64 string to raw string
     - Browser only (Using `Uint8Array` and `TextDecoder`)
     - High performance (Using [tiny-inflate](https://github.com/foliojs/tiny-inflate))
     - Synchronous and Asynchronous/Multi-thread (Using Worker)
