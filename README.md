@@ -2,7 +2,7 @@
 
 * `compress` / `decompress` 
     - Using [lz-string](https://github.com/pieroxy/lz-string) compress/decompress in base64 only
-    - Works in both the browser and Node.js
+    - Both browser and Node.js
     - Normal performance
     - Synchronous only
     - The smallest size (minified) `1.75KB` / `1.67KB`
@@ -15,9 +15,9 @@
 * `inflateSync` and `inflate` 
     - Decompress base64 string to raw string
     - Browser only (Using `Uint8Array` and `TextDecoder`)
-    - High performance (Using [tiny-inflate](https://github.com/foliojs/tiny-inflate))
+    - Higher performance (Using [tiny-inflate](https://github.com/foliojs/tiny-inflate))
     - Synchronous and Asynchronous/Multi-thread (Using Worker)
-    - Small size (minified) `3.16KB` / `3.62KB`
+    - Smaller size (minified) `3.16KB` / `3.62KB`
 
 ## Install
 ```sh
