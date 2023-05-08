@@ -75,6 +75,10 @@ const build = async () => {
         entry: 'inflate.js'
     }, {
         entry: 'inflate-sync.js'
+    }, {
+        entry: 'browser.js',
+        platform: 'browser',
+        format: 'iife'
     }];
 
     for (const item of buildList) {

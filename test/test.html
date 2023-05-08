@@ -9,28 +9,28 @@
 
 <body>
     <script src="./test.data.js"></script>
+    <script src="../dist/browser.js"></script>
     <script>
-        window.module = {};
+        
     </script>
-    <script src="../dist/decompress.js"></script>
-    <script>
-        module.decompress = module.exports;
-    </script>
-    <script src="../dist/inflate.js"></script>
-    <script>
-        module.inflate = module.exports;
-    </script>
-    <script src="../dist/inflate-sync.js"></script>
-    <script>
-        module.inflateSync = module.exports;
-    </script>
-    <script>
-        console.log(module);
+    <script type="module">
+    
+const test = async () => {
+
+        const LZ = window['lz-utils'];
+        console.log(LZ);
+
+        const {
+            decompress, inflate, inflateSync
+        } = LZ;
 
         const testData = window.testData;
         console.log(testData.raw);
 
-        const decompressStr = module.decompress(testData.decompressStr);
+        const decompressStr = decompress(testData.decompressStr);
+
+        // console.log('decompressStr', decompressStr);
+
         const decompressData = JSON.parse(decompressStr);
         console.log(decompressData);
 
@@ -38,21 +38,24 @@
             console.assert(item === testData.raw.list[i]);
         });
 
-        const inflateStrSync = module.inflateSync(testData.inflateStr);
+        const inflateStrSync = inflateSync(testData.inflateStr);
 
-        module.inflate(testData.inflateStr).then((inflateStr) => {
+        const inflateStr = await inflate(testData.inflateStr);
 
-            console.assert(inflateStrSync === inflateStr);
+        console.assert(inflateStrSync === inflateStr);
 
-            // console.log(inflateStr);
-            const inflateData = JSON.parse(inflateStr);
-            console.log(inflateData);
+        // console.log(inflateStr);
+        const inflateData = JSON.parse(inflateStr);
+        console.log(inflateData);
 
-            inflateData.list.forEach((item, i) => {
-                console.assert(item === testData.raw.list[i]);
-            });
+        inflateData.list.forEach((item, i) => {
+            console.assert(item === testData.raw.list[i]);
         });
-        
+    
+    };
+
+    test();
+    
     </script>
 </body>
 
