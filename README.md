@@ -1,5 +1,11 @@
 # lz-utils - Utils for string compression
 
+[![](https://img.shields.io/npm/v/lz-utils)](https://www.npmjs.com/package/lz-utils)
+![](https://img.shields.io/librariesio/github/cenfun/lz-utils)
+![](https://img.shields.io/librariesio/dependents/npm/lz-utils)
+[![](https://badgen.net/npm/dw/lz-utils)](https://www.npmjs.com/package/lz-utils)
+![](https://img.shields.io/github/license/cenfun/lz-utils)
+
 * `compress` / `decompress` 
     - Using [lz-string](https://github.com/pieroxy/lz-string) compress/decompress in base64 only
     - Both browser and Node.js
