@@ -36,16 +36,22 @@ const cs = compress(raw);
 const ds = decompress(cs);
 
 ```
-see [test.js](/scripts/test.js)
-see [test.html](/test/test.html)
+
+## Examples
+- [test.js](/scripts/test.js)
+- [test.html](/test/test.html)
+
+## Why inflate browser only?
+- The business here is to generate a lot of html reports to users or customers, so the report needs to be generated as fast as possible and the file size should be as small as possible. 
+- The possible process is to compress the data on the server side and generate the html file, then the user opens the html file in the browser, and finally decompresses the data and renders the report.
 
 
 ## String Compression Benchmark
 - [string-compression](https://github.com/cenfun/string-compression)
 
+
 ## Link
 * [https://github.com/pieroxy/lz-string](https://github.com/pieroxy/lz-string)
-* [https://pieroxy.net/blog/pages/lz-string/index.html](https://pieroxy.net/blog/pages/lz-string/index.html)
 * [https://github.com/foliojs/tiny-inflate](https://github.com/foliojs/tiny-inflate)
 
 ## Changelog
