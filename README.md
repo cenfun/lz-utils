@@ -1,6 +1,21 @@
-# lz-utils
+# lz-utils - Utils for string compression
 
-utils of [lz-string](https://github.com/pieroxy/lz-string) but only base64 format and compress/decompress separated for bundle self decompressed on runtime.
+* `compress` / `decompress` 
+    - Using [lz-string](https://github.com/pieroxy/lz-string) compress/decompress in base64 only
+    - Works in both the browser and Node.js
+    - Normal performance
+    - Synchronous only
+    - The smallest size (minified) `1.75KB` / `1.67KB`
+* `deflateSync` and `deflate` compress raw string and encode in base64
+    - Node.js only
+    - The highest performance (Using native `zlib`)
+    - Synchronous and Asynchronous
+    - The smallest size (minified) `0.13KB` / `0.17KB`
+* `inflateSync` and `inflate` decompress base64 string to raw string
+    - Browser only (Using `Uint8Array` and `TextDecoder`)
+    - High performance (Using [tiny-inflate](https://github.com/foliojs/tiny-inflate))
+    - Synchronous and Asynchronous/Multi-thread (Using Worker)
+    - Small size (minified) `3.16KB` / `4.68KB`
 
 ## Install
 ```sh
@@ -8,44 +23,33 @@ npm install lz-utils
 ```
 ## Usage
 ```js
-//CJS
-const { compress, decompress } = require('lz-utils');
-const s = 'this is my string english'
-const cs = compress(s);
-console.log(cs);
+import { 
+    compress, decompress,
+    deflateSync, deflate,
+    inflateSync, inflate
+} from 'lz-utils';
+
+const raw = "this is string";
+const cs = compress(raw);
 const ds = decompress(cs);
-if (ds !== s) {
-    throw new Error('compress/decompress error');
-}
+
 ```
-see [test.js](test/test.js)
+see [test.js](/scripts/test.js)
+see [test.html](/test/test.html)
 
-```js
-//ESM
-import { compress, decompress } from 'lz-utils';
-```
 
-## Browser Usage
-```html
-<script src="../dist/lz-compress.js"></script>
-<script src="../dist/lz-decompress.js"></script>
-<script src="../dist/lz-utils.js"></script>
-<script>
+## String Compression Benchmark
+- [string-compression](https://github.com/cenfun/string-compression)
 
-const compress = window["lz-compress"];
-const decompress = window["lz-decompress"];
-
-const lz = window["lz-utils"];
-console.log(lz)
-
-</script>
-```
-see [test.html](test/test.html)
 ## Link
 * [https://github.com/pieroxy/lz-string](https://github.com/pieroxy/lz-string)
 * [https://pieroxy.net/blog/pages/lz-string/index.html](https://pieroxy.net/blog/pages/lz-string/index.html)
+* [https://github.com/foliojs/tiny-inflate](https://github.com/foliojs/tiny-inflate)
 
 ## Changelog
+
+* 2.0.0
+    - added tiny-inflate
 
 * 1.0.7 
     - added ESM supported
