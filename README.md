@@ -6,12 +6,6 @@
 [![](https://badgen.net/npm/dw/lz-utils)](https://www.npmjs.com/package/lz-utils)
 ![](https://img.shields.io/github/license/cenfun/lz-utils)
 
-* `compress` / `decompress` 
-    - Using [lz-string](https://github.com/pieroxy/lz-string) compress/decompress in base64 only
-    - Both browser and Node.js
-    - Normal performance
-    - Synchronous only
-    - The smallest size (minified) `1.75KB` / `1.67KB`
 * `deflateSync` and `deflate` 
     - Compress raw string and encode in base64
     - Node.js only
@@ -24,6 +18,12 @@
     - Higher performance (Using [tiny-inflate](https://github.com/foliojs/tiny-inflate))
     - Synchronous and Asynchronous/Multi-thread (Using Worker)
     - Smaller size (minified) `3.16KB` / `3.62KB`
+* `compress` / `decompress` 
+    - Using [lz-string](https://github.com/pieroxy/lz-string) compress/decompress in base64 only
+    - Both browser and Node.js
+    - Normal performance
+    - Synchronous only
+    - The smallest size (minified) `1.75KB` / `1.67KB`
 
 ## Install
 ```sh
