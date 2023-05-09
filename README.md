@@ -54,7 +54,7 @@ const ds = decompress(cs);
 
 
 ## String Compression Benchmark
-- [string-compression](https://github.com/cenfun/string-compression)
+- [string-compression](https://github.com/cenfun/string-compression) lz-string, pako, uzip.js, fflate, tiny-inflate   
 
 
 ## Link
