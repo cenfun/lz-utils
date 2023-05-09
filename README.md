@@ -48,9 +48,9 @@ const ds = decompress(cs);
 - [test.html](/test/test.html)
 
 ## Business Requirements and Why lz-utils?
-- The business here is to generate a lot of `html reports` to users or customers, so the report needs to be generated as fast as possible and the file size should be as small as possible. 
-- The possible process is to compress the report data on the server side and embed it in the html file. When the user opens the html file in the browser, the report data will be `self-decompressed` and rendered in the browser. So that's why `inflate` browser only.
-- Why `base64`? First of all, the data is stored in json format, which is easily serialized into string and compressed by `lz-utils`. At this time, we get binary data. Although its size is the smallest, it has many problems, such as security issues (CORS) because it is not JS type or object, so we need to convert binary data into JS string, and base64 is a good choice.
+- The business here is to generate a lot of `html reports` to users or customers, so the report needs to be generated as `fast` as possible and the file size should be as `small` as possible. 
+- The possible process is to compress the report data and bundle it with the html file. When the user opens the html file in the browser, the report data will be `self-decompressed` and rendered in the browser. So that's why `inflate` browser only.
+- Why `base64`? First of all, the data is stored in `JSON` format, which is easily serialized into string and compressed by `lz-utils`. At this time, we get `binary` data. Although its size is the smallest, it has many problems, such as `security issues` (CORS) because it is not JS type or object, so we need to convert binary data into JS string, and `base64` is a good choice.
 
 
 ## String Compression Benchmark
