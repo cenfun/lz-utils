@@ -63,7 +63,7 @@ const ds = decompress(cs);
 
 ## Changelog
 
-* 2.0.1
+* 2.0.2
     - added types
 
 * 2.0.0
