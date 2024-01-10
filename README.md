@@ -63,6 +63,9 @@ const ds = decompress(cs);
 
 ## Changelog
 
+* 2.0.1
+    - added types
+
 * 2.0.0
     - added tiny-inflate
 
