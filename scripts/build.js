@@ -60,19 +60,28 @@ const build = async () => {
     }
     fs.mkdirSync(tempDir);
 
-    const workerItem = {
-        entry: 'inflate-worker.js',
-        platform: 'browser',
-        format: 'iife',
-        minify: true
-    };
-    const workerFIle = await buildItem(workerItem, libDir, distDir, tempDir);
-    const workerJs = fs.readFileSync(workerFIle);
-    const workerData = {
-        data: workerJs.toString('utf-8')
-    };
-    const workerStr = JSON.stringify(workerData);
-    fs.writeFileSync(path.resolve(tempDir, 'inflate-worker-data.json'), workerStr);
+    const taskList = [{
+        outputFile: 'inflate-worker-data.js',
+        buildOptions: {
+            entry: 'inflate-worker.js',
+            platform: 'browser',
+            format: 'iife',
+            minify: true
+        }
+    }, {
+        outputFile: 'script-loader-data.js',
+        buildOptions: {
+            entry: 'script-loader.js',
+            minify: true
+        }
+    }];
+
+    for (const task of taskList) {
+        const filePath = await buildItem(task.buildOptions, libDir, distDir, tempDir);
+        const fileContent = fs.readFileSync(filePath).toString('utf-8');
+        const data = `module.exports = ${JSON.stringify(fileContent)};`;
+        fs.writeFileSync(path.resolve(distDir, task.outputFile), data);
+    }
 
     const buildList = [{
         entry: 'compress.js'
@@ -86,6 +95,8 @@ const build = async () => {
         entry: 'inflate.js'
     }, {
         entry: 'inflate-sync.js'
+    }, {
+        entry: 'create-script-loader.js'
     }, {
         entry: 'browser.js',
         platform: 'browser',

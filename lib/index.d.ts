@@ -7,6 +7,8 @@ declare namespace LZ {
 
     function inflateSync(input: string): string;
     function inflate(input: string): Promise<string>;
+
+    function createScriptLoader(input: string): string;
 }
 
 export = LZ

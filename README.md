@@ -24,6 +24,9 @@
     - Normal performance
     - Synchronous only
     - The smallest size (minified) `1.75KB` / `1.67KB`
+* `createScriptLoader`
+    - create script loader
+
 
 ## Install
 ```sh
@@ -62,6 +65,9 @@ const ds = decompress(cs);
 * [https://github.com/foliojs/tiny-inflate](https://github.com/foliojs/tiny-inflate)
 
 ## Changelog
+
+* 2.1.0
+    - added `createScriptLoader`
 
 * 2.0.2
     - added types
