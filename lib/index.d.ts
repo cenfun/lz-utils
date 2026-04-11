@@ -1,12 +1,12 @@
 declare namespace LZ {
     function compress(input: string): string;
-    function decompress(input: string): string;
+    function decompress(input: string): string | null;
 
     function deflateSync(input: string): string;
-    function deflate(input: string): Promise<string>;
+    function deflate(input: string): Promise<string | undefined>;
 
-    function inflateSync(input: string): string;
-    function inflate(input: string): Promise<string>;
+    function inflateSync(input: string): string | undefined;
+    function inflate(input: string): Promise<string | {error: Error}>;
 
     function createScriptLoader(input: string): string;
 }

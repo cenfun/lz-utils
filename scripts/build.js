@@ -103,9 +103,7 @@ const build = async () => {
         format: 'iife'
     }];
 
-    for (const item of buildList) {
-        await buildItem(item, libDir, distDir, tempDir);
-    }
+    await Promise.all(buildList.map((item) => buildItem(item, libDir, distDir, tempDir)));
 
     const copyList = ['index.js', 'index.mjs'];
     for (const item of copyList) {
