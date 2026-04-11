@@ -78,7 +78,7 @@ const build = async () => {
 
     for (const task of taskList) {
         const filePath = await buildItem(task.buildOptions, libDir, distDir, tempDir);
-        const fileContent = fs.readFileSync(filePath).toString('utf-8');
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
         const data = `module.exports = ${JSON.stringify(fileContent)};`;
         fs.writeFileSync(path.resolve(distDir, task.outputFile), data);
     }
