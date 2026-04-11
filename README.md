@@ -6,77 +6,109 @@
 [![](https://badgen.net/npm/dw/lz-utils)](https://www.npmjs.com/package/lz-utils)
 ![](https://img.shields.io/github/license/cenfun/lz-utils)
 
-* `deflateSync` and `deflate` 
-    - Compress raw string and encode in base64
-    - Node.js only
-    - The highest performance (Using native `zlib`)
-    - Synchronous and Asynchronous
-    - The smallest size (minified) `0.13KB` / `0.17KB`
-* `inflateSync` and `inflate` 
-    - Decompress base64 string to raw string
-    - Browser only (Using `Uint8Array` and `TextDecoder`)
-    - Higher performance (Using [tiny-inflate](https://github.com/foliojs/tiny-inflate))
-    - Synchronous and Asynchronous/Multi-thread (Using Worker)
-    - Smaller size (minified) `3.16KB` / `3.62KB`
-* `compress` / `decompress` 
-    - Using [lz-string](https://github.com/pieroxy/lz-string) compress/decompress in base64 only
-    - Both browser and Node.js
-    - Normal performance
-    - Synchronous only
-    - The smallest size (minified) `1.75KB` / `1.67KB`
-* `createScriptLoader`
-    - create script loader
+## Features
+- Zero runtime dependencies
+- Multiple compression strategies for different environments
+- ESM and CommonJS support
+- TypeScript type definitions included
+- Browser bundle (IIFE) included
 
+## API
+
+| Method | Platform | Sync/Async | Algorithm | Minified |
+|:---|:---|:---|:---|:---|
+| `deflateSync(str)` | Node.js | Sync | Native `zlib` | 0.13 KB |
+| `deflate(str)` | Node.js | Async | Native `zlib` | 0.17 KB |
+| `inflateSync(str)` | Browser | Sync | [tiny-inflate](https://github.com/foliojs/tiny-inflate) | 3.15 KB |
+| `inflate(str)` | Browser | Async (Worker) | [tiny-inflate](https://github.com/foliojs/tiny-inflate) | 3.60 KB |
+| `compress(str)` | Both | Sync | [lz-string](https://github.com/pieroxy/lz-string) | 1.71 KB |
+| `decompress(str)` | Both | Sync | [lz-string](https://github.com/pieroxy/lz-string) | 1.59 KB |
+| `createScriptLoader(str)` | Node.js | Sync | `zlib` + loader template | 4.03 KB |
+
+- `deflateSync` / `deflate` - Compress raw string and encode in base64 (Node.js only, highest performance)
+- `inflateSync` / `inflate` - Decompress base64 string to raw string (Browser only, `inflate` uses Web Worker for multi-thread decompression)
+- `compress` / `decompress` - LZ-string based compression/decompression in base64 (works on both browser and Node.js)
+- `createScriptLoader` - Create a self-contained HTML script that decompresses and executes the given string in browser
 
 ## Install
 ```sh
 npm install lz-utils
 ```
+
 ## Usage
+
+### Node.js - Compress with deflate (recommended)
 ```js
-import { 
-    compress, decompress,
-    deflateSync, deflate,
-    inflateSync, inflate
-} from 'lz-utils';
+const { deflateSync, deflate } = require('lz-utils');
 
 const raw = "this is string";
-const cs = compress(raw);
-const ds = decompress(cs);
 
+// Synchronous
+const compressed = deflateSync(raw);
+
+// Asynchronous
+const compressed = await deflate(raw);
+```
+
+### Browser - Decompress with inflate
+```js
+import { inflateSync, inflate } from 'lz-utils/inflate-sync';
+// or
+import { inflate } from 'lz-utils/inflate';
+
+// Synchronous
+const raw = inflateSync(compressed);
+
+// Asynchronous (Web Worker)
+const raw = await inflate(compressed);
+```
+
+### Cross-platform - LZ-string compress/decompress
+```js
+import { compress, decompress } from 'lz-utils';
+
+const raw = "this is string";
+const compressed = compress(raw);
+const decompressed = decompress(compressed);
+```
+
+### Create script loader
+```js
+const { createScriptLoader } = require('lz-utils');
+
+// Creates a self-contained HTML script that will decompress and execute in browser
+const script = createScriptLoader('console.log("hello")');
+```
+
+### Subpath imports
+Each function can be imported individually to minimize bundle size:
+```js
+import compress from 'lz-utils/compress';
+import decompress from 'lz-utils/decompress';
+import deflate from 'lz-utils/deflate';
+import deflateSync from 'lz-utils/deflate-sync';
+import inflate from 'lz-utils/inflate';
+import inflateSync from 'lz-utils/inflate-sync';
+import createScriptLoader from 'lz-utils/create-script-loader';
 ```
 
 ## Examples
-- [test.js](/scripts/test.js)
-- [test.html](/test/test.html)
+- [test.js](/scripts/test.js) - Node.js test
+- [test.html](/test/test.html) - Browser test
 
-## Business Requirements and Why lz-utils?
-- The business here is to generate a lot of `html reports` to users or customers, so the report needs to be generated as `fast` as possible and the file size should be as `small` as possible. 
-- The possible process is to compress the report data and bundle it with the html file. When the user opens the html file in the browser, the report data will be `self-decompressed` and rendered in the browser. So that's why `inflate` browser only.
-- Why `base64`? First of all, the data is stored in `JSON` format, which is easily serialized and compressed. At this time, we get `binary` data. Although its size is the smallest, it has many problems, such as `security issues` (CORS) because it is not JS type or object, so we need to convert binary data into JS string, and `base64` is a good choice.
+## Why lz-utils?
 
+lz-utils is designed for a specific workflow: generating self-contained HTML reports.
+
+- **Goal** - Generate HTML reports that are as `fast` to produce as possible and as `small` in file size as possible.
+- **How it works** - Report data is compressed on the server (Node.js) and bundled into a single HTML file. When the user opens the file in the browser, the data is `self-decompressed` and rendered on the fly. This is why `deflate` runs on Node.js and `inflate` runs in the browser.
+- **Why base64?** - The compressed output is `binary` data, which cannot be safely embedded in JavaScript (due to encoding and CORS issues). Converting it to `base64` produces a plain JS string that can be reliably stored in JSON and embedded in HTML without any escaping problems.
 
 ## String Compression Benchmark
-- [string-compression](https://github.com/cenfun/string-compression) lz-string, pako, uzip.js, fflate, tiny-inflate   
+- [string-compression](https://github.com/cenfun/string-compression) - lz-string, pako, uzip.js, fflate, tiny-inflate   
 
+## Links
+- [pieroxy/lz-string](https://github.com/pieroxy/lz-string) - LZ-based compression algorithm
+- [foliojs/tiny-inflate](https://github.com/foliojs/tiny-inflate) - Tiny DEFLATE decompression library
 
-## Link
-* [https://github.com/pieroxy/lz-string](https://github.com/pieroxy/lz-string)
-* [https://github.com/foliojs/tiny-inflate](https://github.com/foliojs/tiny-inflate)
-
-## Changelog
-
-* 2.1.0
-    - added `createScriptLoader`
-
-* 2.0.2
-    - added types
-
-* 2.0.0
-    - added tiny-inflate
-
-* 1.0.7 
-    - added ESM supported
-
-* 1.0.5
-    - added browser version
+## [Changelog](CHANGELOG.md)
