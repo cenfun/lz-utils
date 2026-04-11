@@ -1,5 +1,12 @@
 # Changelog
 
+- 2.1.1
+    - Fixed missing `createScriptLoader` export in ESM entry
+    - Improved compression performance with bitwise operations
+    - Improved type definitions
+    - Improved build performance with parallel bundling
+    - Updated README
+
 - 2.1.0
     - Added `createScriptLoader`
 

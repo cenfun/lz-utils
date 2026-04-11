@@ -1,7 +1,7 @@
 {
     "name": "lz-utils",
     "version": "2.1.0",
-    "description": "lz-utils",
+    "description": "Utils for string compression and decompression with multiple strategies for Node.js and browser",
     "main": "./dist/index.js",
     "browser": {
         "lz-utils": "./dist/browser.js"
